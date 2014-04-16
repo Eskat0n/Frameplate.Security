@@ -27,7 +27,7 @@
 
             HttpContext.Current.Response.Cookies.Add(authCookie);
             var identity = new CustomIdentity<TId>(accountEntry, authTicket.Name);
-            HttpContext.Current.User = new GenericPrincipal(identity, new[] { "admin" });
+            HttpContext.Current.User = new GenericPrincipal(identity, null);
 
             return true;          
         }
