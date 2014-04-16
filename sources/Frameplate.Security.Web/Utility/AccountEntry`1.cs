@@ -1,4 +1,4 @@
-﻿namespace Frameplate.Security.Utility
+﻿namespace Frameplate.Security.Web.Utility
 {
     using System.IO;
     using System.Text;

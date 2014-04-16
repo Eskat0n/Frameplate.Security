@@ -1,6 +1,5 @@
 namespace Frameplate.Security
 {
-    using System;
     using Encryption;
 
     public class Password

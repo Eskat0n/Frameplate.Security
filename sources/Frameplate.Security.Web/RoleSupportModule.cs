@@ -1,4 +1,4 @@
-﻿namespace Frameplate.Security
+﻿namespace Frameplate.Security.Web
 {
     using System;
     using System.Security.Principal;
@@ -34,7 +34,7 @@
                     return;
 
                 var identity = new CustomIdentity<int>(AccountEntry<int>.Deserialize<int>(ticket.UserData), ticket.Name);
-                var principal = new GenericPrincipal(identity, new[] {"admin"});
+                var principal = new GenericPrincipal(identity, null);
                 context.User = principal;
                 Thread.CurrentPrincipal = principal;
             }

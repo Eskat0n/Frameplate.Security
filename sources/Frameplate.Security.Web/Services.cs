@@ -1,4 +1,4 @@
-﻿namespace Frameplate.Security
+﻿namespace Frameplate.Security.Web
 {
     using System;
 

@@ -2,7 +2,7 @@
 {
     using System;
 
-    public class Credential
+/*    public class Credential
     {
         public Credential(string login, string password)
         {
@@ -18,5 +18,5 @@
         public string Login { get; protected set; }
 
         public string Password { get; protected set; }
-    }
+    }*/
 }
