@@ -1,5 +1,6 @@
 namespace Frameplate.Security
 {
+    using System;
     using Encryption;
 
     public class Password
@@ -22,14 +23,20 @@ namespace Frameplate.Security
         {
             Set(password);
         }
+        
+        protected Password(IEncryptionProvider encryptionProvider, string password, string salt)
+            : this(encryptionProvider)
+        {
+            Set(password, salt);
+        }
 
         public string Hash { get; protected set; }
 
         public string Salt { get; protected set; }
 
-        protected virtual void Set(string password)
+        protected virtual void Set(string password, string salt = null)
         {
-            Salt = EncryptionProvider.GenerateSalt();
+            Salt = salt ?? EncryptionProvider.GenerateSalt();
             Hash = EncryptionProvider.GenerateHash(string.Concat(password, Salt));
         }
 
@@ -40,7 +47,8 @@ namespace Frameplate.Security
 
         protected bool Equals(Password other)
         {
-            return string.Equals(Hash, other.Hash) &&
+            return EncryptionProvider.GetType() == other.EncryptionProvider.GetType() &&
+                   string.Equals(Hash, other.Hash) &&
                    string.Equals(Salt, other.Salt);
         }
 
@@ -54,7 +62,7 @@ namespace Frameplate.Security
 
         public bool Equals(string other)
         {
-            return Equals(new Password(EncryptionProvider, other));
+            return Equals(new Password(EncryptionProvider, other, Salt));
         }
 
         public override int GetHashCode()
