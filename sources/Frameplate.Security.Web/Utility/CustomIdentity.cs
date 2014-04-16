@@ -28,7 +28,7 @@
 
         public bool IsAuthenticated
         {
-            get { return Id.Equals(typeof(TId)) == false; }
+            get { return Id.Equals(default(TId)) == false; }
         }
     }
 }
