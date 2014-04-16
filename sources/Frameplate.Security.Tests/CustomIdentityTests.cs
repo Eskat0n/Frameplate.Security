@@ -18,7 +18,7 @@
             {
                 if (ReferenceEquals(null, obj)) return false;
                 if (ReferenceEquals(this, obj)) return true;
-                if (obj.GetType() != GetType()) return false;
+                if (obj.GetType() != this.GetType()) return false;
                 return Equals((Stub) obj);
             }
         }
@@ -30,12 +30,12 @@
 
         [Test]
         [TestCaseSource("ShouldProcessClassAndStructIdentifiersSource")]
-        public void ShouldProcessClassAndStructIdentifiers(object id)
+        public void ShouldProcessClassAndStructIdentifiers<T>(T id)
         {
-            var account = new Account<object>(id, "Login");
-            var accountEntry = new AccountEntry<object>(account);
-            var identity = new CustomIdentity(accountEntry,
-                                              account.Login);
+            var account = new Account<T>(id, "Login");
+            var accountEntry = new AccountEntry<T>(account);
+            var identity = new CustomIdentity<T>(accountEntry,
+                                                 account.Login);
 
             Assert.IsTrue(identity.IsAuthenticated);
         }

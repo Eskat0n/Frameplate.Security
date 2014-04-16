@@ -7,11 +7,10 @@
     using Utility;
 
     internal class FormsAuthenticationService : IAuthenticationService
-    {    
-        public bool SignIn<TId, TAccount>(TAccount account, bool isPersistent = false) 
-            where TAccount : class, IAccount<TId>
+    {
+        public bool SignIn<TId>(IAccount<TId> account, bool isPersistent = false) 
         {
-            var accountEntry = new AccountEntry<object>();
+            var accountEntry = new AccountEntry<TId>();
             var authTicket = new FormsAuthenticationTicket(1,
                                                            account.Login,
                                                            DateTime.Now,
@@ -26,7 +25,7 @@
             };
 
             HttpContext.Current.Response.Cookies.Add(authCookie);
-            var identity = new CustomIdentity(accountEntry, authTicket.Name);
+            var identity = new CustomIdentity<TId>(accountEntry, authTicket.Name);
             HttpContext.Current.User = new GenericPrincipal(identity, null);
 
             return true;          

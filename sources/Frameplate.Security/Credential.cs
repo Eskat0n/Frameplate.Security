@@ -1,7 +1,5 @@
 ﻿namespace Frameplate.Security
 {
-    using System;
-
 /*    public class Credential
     {
         public Credential(string login, string password)

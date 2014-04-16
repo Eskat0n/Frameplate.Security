@@ -2,8 +2,7 @@
 {
     public interface IAuthenticationService
     {
-        bool SignIn<TId, TAccount>(TAccount account, bool isPersistent = false)
-            where TAccount : class, IAccount<TId>;
+        bool SignIn<TId>(IAccount<TId> account, bool isPersistent = false);
         void SignOut();
     }
 }
