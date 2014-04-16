@@ -11,6 +11,7 @@
 
         public RandomSalter()
         {
+            _length = 8;
         }
 
         public RandomSalter(int length)
