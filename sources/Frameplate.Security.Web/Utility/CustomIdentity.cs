@@ -4,17 +4,17 @@
     using System.Security.Principal;
 
     [Serializable]
-    public class CustomIdentity<TId> : MarshalByRefObject, IIdentity
+    public class CustomIdentity : MarshalByRefObject, IIdentity
     {
-        private readonly AccountEntry<TId> _accountEntry;
+        private readonly AccountEntry<object> _accountEntry;
 
-        public CustomIdentity(AccountEntry<TId> accountEntry, string name)
+        public CustomIdentity(AccountEntry<object> accountEntry, string name)
         {
             Name = name;
             _accountEntry = accountEntry;
         }
 
-        public TId Id
+        public object Id
         {
             get { return _accountEntry.Id; }
         }
@@ -28,7 +28,7 @@
 
         public bool IsAuthenticated
         {
-            get { return Id.Equals(default(TId)) == false; }
+            get { return Id != null; }
         }
     }
 }

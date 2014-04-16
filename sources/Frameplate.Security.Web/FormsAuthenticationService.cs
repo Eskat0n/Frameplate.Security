@@ -11,7 +11,7 @@
         public bool SignIn<TId, TAccount>(TAccount account, bool isPersistent = false) 
             where TAccount : class, IAccount<TId>
         {
-            var accountEntry = new AccountEntry<TId>();
+            var accountEntry = new AccountEntry<object>();
             var authTicket = new FormsAuthenticationTicket(1,
                                                            account.Login,
                                                            DateTime.Now,
@@ -26,7 +26,7 @@
             };
 
             HttpContext.Current.Response.Cookies.Add(authCookie);
-            var identity = new CustomIdentity<TId>(accountEntry, authTicket.Name);
+            var identity = new CustomIdentity(accountEntry, authTicket.Name);
             HttpContext.Current.User = new GenericPrincipal(identity, null);
 
             return true;          

@@ -33,7 +33,7 @@
                 if (ticket == null || ticket.Expired)
                     return;
 
-                var identity = new CustomIdentity<int>(AccountEntry<int>.Deserialize<int>(ticket.UserData), ticket.Name);
+                var identity = new CustomIdentity(AccountEntry<object>.Deserialize<object>(ticket.UserData), ticket.Name);
                 var principal = new GenericPrincipal(identity, null);
                 context.User = principal;
                 Thread.CurrentPrincipal = principal;

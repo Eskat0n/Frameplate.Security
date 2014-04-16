@@ -10,7 +10,7 @@
         {
         }
 
-        public AccountEntry(Account<TId> account)
+        public AccountEntry(IAccount<TId> account)
         {
             Id = account.Id;
         }
