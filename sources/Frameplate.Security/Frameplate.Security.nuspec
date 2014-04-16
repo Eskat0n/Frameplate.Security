@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>Frameplate.Security</id>
+    <version>$version$</version>
+    <title>Frameplate.Security</title>
+    <authors>eskat0n</authors>
+    <owners>eskat0n</owners>
+    <licenseUrl>http://www.opensource.org/licenses/mit-license.php</licenseUrl>
+    <projectUrl>https://github.com/eskat0n/Frameplate.Security</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Frameplate.Security</description>
+    <dependencies>
+      <dependency id="Microsoft.AspNet.Mvc" version="4.0.30506" />
+    </dependencies>
+    <tags>asp.net security mvc</tags>
+  </metadata>
+</package>
