@@ -11,7 +11,7 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Frameplate.Security</description>
     <dependencies>
-      <dependency id="Microsoft.AspNet.Mvc" version="4.0.30506" />
+      <dependency id="Microsoft.AspNet.Mvc" version="5.0.0" />
     </dependencies>
     <tags>asp.net security mvc</tags>
   </metadata>
