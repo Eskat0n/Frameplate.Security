@@ -7,7 +7,7 @@
         public Account(TId id, string login)
         {
             if (id.Equals(default(TId)))
-                throw new ArgumentException("credential");
+                throw new ArgumentNullException("id");
             if (login == null) 
                 throw new ArgumentNullException("login");
 
