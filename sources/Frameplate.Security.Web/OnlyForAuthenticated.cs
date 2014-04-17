@@ -13,9 +13,9 @@
                    httpContext.Request.IsAuthenticated;
         }
 
-        protected override void HandleUnauthorizedRequest(AuthorizationContext filterContext)
+        protected override void HandleUnauthorizedRequest(AuthorizationContext context)
         {
-            var httpContext = filterContext.HttpContext;
+            var httpContext = context.HttpContext;
 
             var appPath = httpContext.Request.ApplicationPath == "/"
                 ? string.Empty
@@ -24,13 +24,27 @@
             if (httpContext.Request.Url == null)
                 return;
 
-            var path = HttpUtility.UrlEncode(httpContext.Request.Url.PathAndQuery);
-            var url = string.Format("{0}{1}", appPath, FormsAuthentication.LoginUrl);
+            var signInUrl = string.Format("{0}{1}", appPath, GetSignInUrl(context));
             if (WebSettings.ReturnUrl)
-                url = string.Format("{0}?ReturnUrl={1}", url, path);
+                signInUrl = string.Format("{0}?{1}={2}", signInUrl,
+                                          WebSettings.ReturnUrlParameter,
+                                          HttpUtility.UrlEncode(httpContext.Request.Url.PathAndQuery));
 
-            if (filterContext.IsChildAction == false)
-                filterContext.Result = new RedirectResult(url);
+            if (context.IsChildAction == false)
+                context.Result = new RedirectResult(signInUrl);
+        }
+
+        private static string GetSignInUrl(ControllerContext context)
+        {
+            if (WebSettings.SignInAction != null &&
+                WebSettings.SignInController != null)
+            {
+                var urlHelper = new UrlHelper(context.RequestContext);
+                return urlHelper.Action(WebSettings.SignInAction,
+                                        WebSettings.SignInController);
+            }
+
+            return FormsAuthentication.LoginUrl;
         }
     }
 }
