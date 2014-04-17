@@ -1,6 +1,7 @@
 ﻿namespace Frameplate.Security.Web.Fluent
 {
     using System.Web;
+    using System.Web.Mvc;
     using Configuration;
 
     internal class WebSecurityConfigurator : IWebSecurityConfigurator
@@ -31,6 +32,13 @@
         public IWebSecurityConfigurator RegisterModules()
         {
             new AuthenticationModule().Init(_httpApplication);
+
+            return this;
+        }
+
+        public IWebSecurityConfigurator RegisterAll()
+        {
+            RegisterModules();
 
             return this;
         }

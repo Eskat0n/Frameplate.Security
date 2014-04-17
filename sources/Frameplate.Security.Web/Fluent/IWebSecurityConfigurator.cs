@@ -7,5 +7,6 @@
         IWebSecurityConfigurator SingInAt([AspMvcAction] string action, [AspMvcController] string controller);
         IWebSecurityConfigurator SingOutAt([AspMvcAction] string action, [AspMvcController] string controller);
         IWebSecurityConfigurator RegisterModules();
+        IWebSecurityConfigurator RegisterAll();
     }
 }
