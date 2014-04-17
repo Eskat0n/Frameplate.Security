@@ -15,20 +15,20 @@
 
         protected override void HandleUnauthorizedRequest(AuthorizationContext context)
         {
-            var httpContext = context.HttpContext;
+            var request = context.HttpContext.Request;
 
-            var appPath = httpContext.Request.ApplicationPath == "/"
-                ? string.Empty
-                : httpContext.Request.ApplicationPath;
+            var applicationPath = request.ApplicationPath != "/"
+                ? request.ApplicationPath
+                : string.Empty;
 
-            if (httpContext.Request.Url == null)
+            if (request.Url == null)
                 return;
 
-            var signInUrl = string.Format("{0}{1}", appPath, GetSignInUrl(context));
+            var signInUrl = string.Format("{0}{1}", applicationPath, GetSignInUrl(context));
             if (WebSettings.ReturnUrl)
                 signInUrl = string.Format("{0}?{1}={2}", signInUrl,
                                           WebSettings.ReturnUrlParameter,
-                                          HttpUtility.UrlEncode(httpContext.Request.Url.PathAndQuery));
+                                          HttpUtility.UrlEncode(request.Url.PathAndQuery));
 
             if (context.IsChildAction == false)
                 context.Result = new RedirectResult(signInUrl);
