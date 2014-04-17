@@ -13,7 +13,20 @@
             return new AccountData<TId>{Id = account.Id};
         }
 
+        public static AccountData Create<TId, TRole>(IAccount<TId> account, TRole role)
+        {
+            return new AccountData<TId>
+            {
+                Id = account.Id,
+                Roles = Equals(role, default(TRole)) == false
+                    ? new[] {role.ToString()}
+                    : null
+            };
+        }
+
         public object Id { get; set; }
+
+        public string[] Roles { get; set; }
 
         public string Serialize()
         {

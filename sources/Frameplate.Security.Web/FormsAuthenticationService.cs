@@ -20,7 +20,7 @@
 
         private static bool SignIn<TId, TRole>(IAccount<TId> account, TRole role, bool isPersistent)
         {
-            var accountData = AccountData.Create(account);
+            var accountData = AccountData.Create(account, role);
             var authTicket = new FormsAuthenticationTicket(1,
                                                            account.Login,
                                                            DateTime.Now,
@@ -36,16 +36,9 @@
 
             HttpContext.Current.Response.Cookies.Add(authCookie);
             var identity = new FrameplateIdentity(accountData, authTicket.Name);
-            HttpContext.Current.User = new GenericPrincipal(identity, GetRoles(role));
+            HttpContext.Current.User = new GenericPrincipal(identity, accountData.Roles);
 
             return true;
-        }
-
-        private static string[] GetRoles<TRole>(TRole role)
-        {
-            return Equals(role, default(TRole)) == false
-                ? new[] {role.ToString()}
-                : null;
         }
 
         public void SignOut()

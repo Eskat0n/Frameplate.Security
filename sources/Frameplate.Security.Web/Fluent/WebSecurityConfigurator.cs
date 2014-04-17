@@ -55,8 +55,10 @@
                 if (ticket == null || ticket.Expired)
                     return;
 
-                var identity = new FrameplateIdentity(AccountData.Deserialize(ticket.UserData), ticket.Name);
-                var principal = new GenericPrincipal(identity, null);
+                var accountData = AccountData.Deserialize(ticket.UserData);
+                var identity = new FrameplateIdentity(accountData, ticket.Name);
+                var principal = new GenericPrincipal(identity, accountData.Roles);
+
                 httpApplication.Context.User = principal;
                 Thread.CurrentPrincipal = principal;
             }
