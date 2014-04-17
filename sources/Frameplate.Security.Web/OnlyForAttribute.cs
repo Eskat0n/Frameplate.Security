@@ -22,7 +22,6 @@
         {
             var principal = HttpContext.Current.User;
             return base.AuthorizeCore(httpContext) &&
-                   principal != null &&
                    _roles.Any(x => principal.IsInRole(x.ToString()));
         }
     }

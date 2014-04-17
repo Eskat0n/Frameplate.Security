@@ -33,5 +33,13 @@
 
             return RedirectToAction("Index", "Home");
         }
+
+        [HttpGet]
+        public ActionResult SignOut()
+        {
+            _authService.SignOut();
+
+            return RedirectToAction("Index", "Home");
+        }
     }
 }

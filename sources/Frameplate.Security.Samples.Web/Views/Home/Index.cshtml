@@ -16,6 +16,10 @@
             <li><a href="@Url.Action("Private", "Home")">Page for authenticated accounts</a></li>
             <li><a href="@Url.Action("Index", "User")">Page for User</a></li>
             <li><a href="@Url.Action("Index", "Admin")">Page for Admin</a></li>
+            @if (HttpContext.Current.User.Identity.IsAuthenticated)
+            {
+                <li><a href="@Url.Action("SignOut", "Auth")">Sign Out</a></li>
+            }
         </ul>   
     </body>
 </html>
