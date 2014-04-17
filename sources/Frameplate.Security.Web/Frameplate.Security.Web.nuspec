@@ -13,6 +13,7 @@
     <dependencies>
       <dependency id="Frameplate.Security" version="1.0.0" />
       <dependency id="Microsoft.AspNet.Mvc" version="5.0.0" />
+      <dependency id="Newtonsoft.Json" version="4.5.0" />
     </dependencies>
     <tags>asp.net security mvc</tags>
   </metadata>

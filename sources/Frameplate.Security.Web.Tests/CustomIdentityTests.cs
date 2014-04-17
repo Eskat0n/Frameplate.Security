@@ -37,8 +37,8 @@
         public void ShouldProcessClassAndStructIdentifiers<T>(T id)
         {
             var account = new Account<T>(id, "Login");
-            var accountEntry = new AccountData<T>(account);
-            var identity = new FrameplateIdentity<T>(accountEntry,
+            var accountEntry = AccountData.Create(account);
+            var identity = new FrameplateIdentity(accountEntry,
                                                  account.Login);
 
             Assert.IsTrue(identity.IsAuthenticated);

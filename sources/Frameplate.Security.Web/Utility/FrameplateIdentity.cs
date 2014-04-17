@@ -4,17 +4,17 @@
     using System.Security.Principal;
 
     [Serializable]
-    public class FrameplateIdentity<TId> : MarshalByRefObject, IIdentity
+    public class FrameplateIdentity : MarshalByRefObject, IIdentity
     {
-        private readonly AccountData<TId> _accountData;
+        private readonly AccountData _accountData;
 
-        public FrameplateIdentity(AccountData<TId> accountData, string name)
+        public FrameplateIdentity(AccountData accountData, string name)
         {
             Name = name;
             _accountData = accountData;
         }
 
-        public TId Id
+        public object Id
         {
             get { return _accountData.Id; }
         }
@@ -28,7 +28,7 @@
 
         public bool IsAuthenticated
         {
-            get { return Equals(Id, default(TId)) == false; }
+            get { return Id != null; }
         }
     }
 }
