@@ -7,9 +7,9 @@
     [TestFixture]
     public class CustomIdentityTests
     {
-        internal class Stub
+        private class Stub
         {
-            protected bool Equals(Stub other)
+            private bool Equals(Stub other)
             {
                 return true;
             }
@@ -18,8 +18,8 @@
             {
                 if (ReferenceEquals(null, obj)) return false;
                 if (ReferenceEquals(this, obj)) return true;
-                if (obj.GetType() != this.GetType()) return false;
-                return Equals((Stub) obj);
+                return obj.GetType() == GetType() &&
+                       Equals((Stub) obj);
             }
         }
 
