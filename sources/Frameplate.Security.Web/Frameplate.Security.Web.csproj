@@ -50,6 +50,7 @@
     <Compile Include="Fluent\SetupExtensions.cs" />
     <Compile Include="Fluent\WebSecurityConfigurator.cs" />
     <Compile Include="FormsAuthenticationService.cs" />
+    <Compile Include="AuthenticationModule.cs" />
     <Compile Include="OnlyForAttribute.cs" />
     <Compile Include="OnlyForAuthenticated.cs" />
     <Compile Include="Properties\Annotations.cs" />

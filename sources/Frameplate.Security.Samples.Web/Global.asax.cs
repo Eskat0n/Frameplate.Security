@@ -15,7 +15,7 @@
                 .Web(this)
                 .SingInAt("SignIn", "Auth")
                 .SingOutAt("SignOut", "Auth")
-                .RegisterHandlers();
+                .RegisterModules();
         }
 
         protected void Application_Start()

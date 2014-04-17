@@ -1,12 +1,7 @@
 ﻿namespace Frameplate.Security.Web.Fluent
 {
-    using System;
-    using System.Security.Principal;
-    using System.Threading;
     using System.Web;
-    using System.Web.Security;
     using Configuration;
-    using Utility;
 
     internal class WebSecurityConfigurator : IWebSecurityConfigurator
     {
@@ -33,38 +28,11 @@
             return this;
         }
 
-        public IWebSecurityConfigurator RegisterHandlers()
+        public IWebSecurityConfigurator RegisterModules()
         {
-            _httpApplication.AuthenticateRequest += MvcApplicationOnAuthenticateRequest;
+            new AuthenticationModule().Init(_httpApplication);
 
             return this;
-        }
-
-        private static void MvcApplicationOnAuthenticateRequest(object sender, EventArgs eventArgs)
-        {
-            var httpApplication = (HttpApplication) sender;
-
-            var cookieName = FormsAuthentication.FormsCookieName;
-            var cookie = httpApplication.Request.Cookies[cookieName.ToUpper()];
-            if (cookie == null)
-                return;
-
-            try
-            {
-                var ticket = FormsAuthentication.Decrypt(cookie.Value);
-                if (ticket == null || ticket.Expired)
-                    return;
-
-                var accountData = AccountData.Deserialize(ticket.UserData);
-                var identity = new FrameplateIdentity(accountData, ticket.Name);
-                var principal = new GenericPrincipal(identity, accountData.Roles);
-
-                httpApplication.Context.User = principal;
-                Thread.CurrentPrincipal = principal;
-            }
-            catch
-            {
-            }
         }
     }
 }
