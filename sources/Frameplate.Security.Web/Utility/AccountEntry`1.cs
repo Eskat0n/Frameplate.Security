@@ -27,7 +27,7 @@
             }
         }
 
-        public static AccountEntry<TId> Deserialize<TId>(string value)
+        public static AccountEntry<TId> Deserialize(string value)
         {
             using (var stream = new MemoryStream(Encoding.UTF8.GetBytes(value)))
             {
