@@ -9,17 +9,21 @@
     {
         private class Stub
         {
-            private bool Equals(Stub other)
+            protected bool Equals(Stub other)
             {
-                return true;
+                throw new NotImplementedException();
+            }
+
+            public override int GetHashCode()
+            {
+                throw new NotImplementedException();
             }
 
             public override bool Equals(object obj)
             {
                 if (ReferenceEquals(null, obj)) return false;
                 if (ReferenceEquals(this, obj)) return true;
-                return obj.GetType() == GetType() &&
-                       Equals((Stub) obj);
+                return obj.GetType() == GetType();
             }
         }
 

@@ -47,10 +47,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Frameplate.Security.Web\Frameplate.Security.Web.csproj">
-      <Project>{c16e6285-2a36-4594-b744-fb67ac638e0c}</Project>
-      <Name>Frameplate.Security.Web</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Frameplate.Security\Frameplate.Security.csproj">
       <Project>{ac754ffd-497b-49bb-b1f6-5a0e15c05dd8}</Project>
       <Name>Frameplate.Security</Name>
