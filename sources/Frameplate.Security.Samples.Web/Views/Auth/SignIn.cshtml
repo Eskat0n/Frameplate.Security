@@ -1,0 +1,27 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Sign In</title>
+    </head>
+    <body>
+        @using (Html.BeginForm("SignIn", "Auth", FormMethod.Post))
+        {
+            <dl>
+                <dt>Логин</dt>
+                <dd><input type="text" name="login" /></dd>
+            </dl>
+            <dl>
+                <dt>Пароль</dt>
+                <dd><input type="password" name="password" /></dd>
+            </dl>                                  
+            <div>
+                <input type="submit" value="Sign In" />    
+            </div>            
+        }        
+    </body>
+</html>

@@ -1,8 +1,8 @@
-﻿namespace Frameplate.Security.Tests
+﻿namespace Frameplate.Security.Web.Tests
 {
     using System;
     using NUnit.Framework;
-    using Web.Utility;
+    using Utility;
 
     [TestFixture]
     public class CustomIdentityTests
