@@ -2,5 +2,6 @@
 {
     public interface IWebSecurityConfigurator
     {
+        void RegisterHandlers();
     }
 }

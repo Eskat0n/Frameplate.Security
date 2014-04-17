@@ -1,14 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using System.Web.Routing;
-
-namespace Frameplate.Security.Samples.Web
+﻿namespace Frameplate.Security.Samples.Web
 {
-    public class MvcApplication : System.Web.HttpApplication
+    using System.Web;
+    using System.Web.Mvc;
+    using System.Web.Routing;
+    using Fluent;
+    using Security.Web.Fluent;
+
+    public class MvcApplication : HttpApplication
     {
+        public MvcApplication()
+        {
+            Security
+                .Configure()
+                .Web(this)
+                .RegisterHandlers();
+        }
+
         protected void Application_Start()
         {
             AreaRegistration.RegisterAllAreas();
