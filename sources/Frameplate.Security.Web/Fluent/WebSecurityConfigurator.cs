@@ -5,6 +5,7 @@
     using System.Threading;
     using System.Web;
     using System.Web.Security;
+    using Configuration;
     using Utility;
 
     internal class WebSecurityConfigurator : IWebSecurityConfigurator
@@ -16,9 +17,27 @@
             _httpApplication = httpApplication;
         }
 
-        public void RegisterHandlers()
+        public IWebSecurityConfigurator SingInAt(string action, string controller)
+        {
+            WebSettings.SignInAction = action;
+            WebSettings.SignInController = controller;
+
+            return this;
+        }
+
+        public IWebSecurityConfigurator SingOutAt(string action, string controller)
+        {
+            WebSettings.SignOutAction = action;
+            WebSettings.SignOutController = controller;
+
+            return this;
+        }
+
+        public IWebSecurityConfigurator RegisterHandlers()
         {
             _httpApplication.AuthenticateRequest += MvcApplicationOnAuthenticateRequest;
+
+            return this;
         }
 
         private static void MvcApplicationOnAuthenticateRequest(object sender, EventArgs eventArgs)

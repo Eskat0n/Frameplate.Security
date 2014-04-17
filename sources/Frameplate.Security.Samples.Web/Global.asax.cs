@@ -13,6 +13,8 @@
             Security
                 .Configure()
                 .Web(this)
+                .SingInAt("SignIn", "Auth")
+                .SingOutAt("SignOut", "Auth")
                 .RegisterHandlers();
         }
 

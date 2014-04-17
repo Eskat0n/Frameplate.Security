@@ -1,7 +1,11 @@
 ﻿namespace Frameplate.Security.Web.Fluent
 {
+    using Annotations;
+
     public interface IWebSecurityConfigurator
     {
-        void RegisterHandlers();
+        IWebSecurityConfigurator SingInAt([AspMvcAction] string action, [AspMvcController] string controller);
+        IWebSecurityConfigurator SingOutAt([AspMvcAction] string action, [AspMvcController] string controller);
+        IWebSecurityConfigurator RegisterHandlers();
     }
 }

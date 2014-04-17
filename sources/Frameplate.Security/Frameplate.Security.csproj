@@ -59,6 +59,7 @@
     <Compile Include="Password.cs" />
     <Compile Include="Password`1.cs" />
     <Compile Include="Fluent\Setup.cs" />
+    <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
