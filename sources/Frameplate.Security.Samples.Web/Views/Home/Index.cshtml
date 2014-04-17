@@ -9,6 +9,8 @@
         <title>Home</title>
     </head>
     <body>
+        <div>Current user: @HttpContext.Current.User.Identity.Name</div>
+
         <ul>
             <li><a href="@Url.Action("SignIn", "Auth")">Sign In</a></li>
             <li><a href="@Url.Action("Private", "Home")">Page for authenticated accounts</a></li>

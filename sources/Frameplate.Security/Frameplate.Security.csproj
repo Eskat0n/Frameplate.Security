@@ -54,6 +54,8 @@
     <Compile Include="Encryption\ISalter.cs" />
     <Compile Include="Encryption\Hashers\Md5Hasher.cs" />
     <Compile Include="Encryption\Salters\RandomSalter.cs" />
+    <Compile Include="IRoleAccount.cs" />
+    <Compile Include="IHaveRole.cs" />
     <Compile Include="Password.cs" />
     <Compile Include="Password`1.cs" />
     <Compile Include="Fluent\Setup.cs" />
