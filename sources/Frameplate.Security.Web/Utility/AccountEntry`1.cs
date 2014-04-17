@@ -4,13 +4,13 @@
     using System.Text;
     using System.Xml.Serialization;
 
-    public class AccountEntry<TId>
+    public class AccountData<TId>
     {
-        internal AccountEntry()
+        internal AccountData()
         {
         }
 
-        public AccountEntry(IAccount<TId> account)
+        public AccountData(IAccount<TId> account)
         {
             Id = account.Id;
         }
@@ -21,18 +21,18 @@
         {
             using (var stream = new MemoryStream())
             {
-                var formatter = new XmlSerializer(typeof (AccountEntry<TId>));
+                var formatter = new XmlSerializer(typeof (AccountData<TId>));
                 formatter.Serialize(stream, this);
                 return Encoding.UTF8.GetString(stream.ToArray());
             }
         }
 
-        public static AccountEntry<TId> Deserialize(string value)
+        public static AccountData<TId> Deserialize(string value)
         {
             using (var stream = new MemoryStream(Encoding.UTF8.GetBytes(value)))
             {
-                var formatter = new XmlSerializer(typeof(AccountEntry<TId>));
-                return (AccountEntry<TId>) formatter.Deserialize(stream);
+                var formatter = new XmlSerializer(typeof(AccountData<TId>));
+                return (AccountData<TId>) formatter.Deserialize(stream);
             }
         }
     }

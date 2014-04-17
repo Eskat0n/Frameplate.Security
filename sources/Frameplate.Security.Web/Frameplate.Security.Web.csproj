@@ -50,10 +50,9 @@
     <Compile Include="OnlyForAttribute.cs" />
     <Compile Include="OnlyForAuthenticated.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RoleSupportModule.cs" />
     <Compile Include="Services.cs" />
     <Compile Include="Utility\AccountEntry`1.cs" />
-    <Compile Include="Utility\CustomIdentity.cs" />
+    <Compile Include="Utility\FrameplateIdentity.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Frameplate.Security.Web.nuspec" />

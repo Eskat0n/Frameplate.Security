@@ -1,5 +1,7 @@
 ﻿namespace Frameplate.Security.Web
 {
+    using System;
+    using System.Linq;
     using System.Web;
 
     public class OnlyForAttribute : OnlyForAuthenticated
@@ -8,17 +10,20 @@
 
         public OnlyForAttribute(params object[] roles)
         {
-            _roles = roles;
+            if (roles == null) 
+                throw new ArgumentNullException("roles");
+
+            _roles = roles
+                .Where(x => x != null)
+                .ToArray();
         }
 
         protected override bool AuthorizeCore(HttpContextBase httpContext)
         {
-            if (base.AuthorizeCore(httpContext) == false)
-                return false;
-
-//            Setup.
-//            return account != null && _roles.Contains(account.Role);
-            return false;
+            var principal = HttpContext.Current.User;
+            return base.AuthorizeCore(httpContext) &&
+                   principal != null &&
+                   _roles.Any(x => principal.IsInRole(x.ToString()));
         }
     }
 }

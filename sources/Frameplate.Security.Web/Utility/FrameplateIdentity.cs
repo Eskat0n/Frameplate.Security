@@ -4,26 +4,26 @@
     using System.Security.Principal;
 
     [Serializable]
-    public class CustomIdentity<TId> : MarshalByRefObject, IIdentity
+    public class FrameplateIdentity<TId> : MarshalByRefObject, IIdentity
     {
-        private readonly AccountEntry<TId> _accountEntry;
+        private readonly AccountData<TId> _accountData;
 
-        public CustomIdentity(AccountEntry<TId> accountEntry, string name)
+        public FrameplateIdentity(AccountData<TId> accountData, string name)
         {
             Name = name;
-            _accountEntry = accountEntry;
+            _accountData = accountData;
         }
 
         public TId Id
         {
-            get { return _accountEntry.Id; }
+            get { return _accountData.Id; }
         }
 
         public string Name { get; private set; }
 
         public string AuthenticationType
         {
-            get { return "Custom"; }
+            get { return "Frameplate"; }
         }
 
         public bool IsAuthenticated
