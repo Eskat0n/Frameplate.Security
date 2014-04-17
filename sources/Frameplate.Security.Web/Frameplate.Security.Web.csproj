@@ -42,6 +42,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Fluent\IWebSecurityConfigurator.cs" />
+    <Compile Include="Configuration\WebSettings.cs" />
+    <Compile Include="Fluent\SetupExtensions.cs" />
+    <Compile Include="Fluent\WebSecurityConfigurator.cs" />
     <Compile Include="FormsAuthenticationService.cs" />
     <Compile Include="OnlyForAttribute.cs" />
     <Compile Include="OnlyForAuthenticated.cs" />
